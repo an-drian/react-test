@@ -26,6 +26,6 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "guard-for-in": "error",
-    "semi": "error"
+    "semi": "warn"
   }
 }

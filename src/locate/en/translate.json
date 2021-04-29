@@ -12,5 +12,10 @@
   },
   "header": {
     "main": "My main translations"
+  },
+  "sidenav": {
+    "home": "Home",
+    "page1": "Page1",
+    "page2": "Page2"
   }
 }
