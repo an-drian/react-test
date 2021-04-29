@@ -4,7 +4,7 @@ const MenuItem = styled.li`
   height: 52px;
   border-top-right-radius: 26px;
   border-bottom-right-radius: 26px;
-  background-color: ${ props => props.active ? props.theme.colors.accentRed : 'transparent'};
+  background-color: ${ props => props.$active ? props.theme.colors.accentRed : 'transparent'};
   display: flex;
   align-items: center;
   padding-left: 15px;

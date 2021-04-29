@@ -3,3 +3,4 @@ export { default as Title } from './Title';
 export { default as Sidebar } from './Sidebar';
 export { default as MenuItem } from './MenuItem';
 export { default as List } from './List';
+export { default as Loader } from './Loader';
