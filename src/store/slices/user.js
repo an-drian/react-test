@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getUsersEdit } from 'base/network/user';
-import { LOADING, SUCCEED, FAILURE } from '../CONSTANTS';
+import { LOADING, SUCCEED, FAILURE } from 'store/CONSTANTS';
+
 
 export const fetchUserEdit = createAsyncThunk('user/fetchUserEdit', async () => {
   const response = await getUsersEdit();
