@@ -1,4 +1,3 @@
-import { Header } from 'base/styled';
 import theme from 'base/theme';
 import { ThemeProvider } from 'styled-components';
 import { I18nextProvider } from 'react-i18next';
@@ -8,6 +7,7 @@ import RouterConfig from 'navigation/RouterConfig';
 import { Provider } from 'react-redux';
 import store from 'store';
 import MainWrapper from 'base/styled/MainWrapper';
+import HeadContent from 'base/components/HeadContent';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
           <Provider store={store}>
             <MainWrapper>
-              <Header>LOGO</Header>
+              <HeadContent />
               <RouterConfig />
             </MainWrapper>
           </Provider>

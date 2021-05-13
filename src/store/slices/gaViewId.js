@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getGAViewIds } from 'base/network/gaViews';
 import { LOADING, SUCCEED, FAILURE } from 'store/CONSTANTS';
+import { userSlice } from 'store/slices/user';
 
 export const initialState = {
   status: LOADING,
   ids: [],
+  selectedId: null, // assume that the value will be as follows { value: 1, label: 'Im pretty name' }
   errors: {}
 };
 
@@ -16,12 +18,17 @@ export const fetchGAViewIds = createAsyncThunk('gaViewIdsSlice/fetchGAViewIds', 
 export const gaViewIdsSlice = createSlice({
   name: 'gaViewIdsSlice',
   initialState,
+  reducers: {
+    setSelectedId (state, action) {
+      state.selectedId = action.payload;
+    }
+  },
   extraReducers: {
     [fetchGAViewIds.pending]: (state) => {
       state.status = LOADING;
     },
     [fetchGAViewIds.fulfilled]: (state, action) => {
-      console.log(action);
+      state.ids = action.payload?.google_analytics_view_ids;
       state.status = SUCCEED;
     },
     [fetchGAViewIds.rejected]: (state) => {
@@ -29,5 +36,7 @@ export const gaViewIdsSlice = createSlice({
     }
   }
 });
+
+export const { setSelectedId } = gaViewIdsSlice.actions;
 
 export default gaViewIdsSlice.reducer;

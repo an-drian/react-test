@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const NOT_ACCEPTABLE = 406;
 
 const network = axios.create({
@@ -8,7 +9,7 @@ const network = axios.create({
   xsrfCookieName: 'CSRF-TOKEN',
   xsrfHeaderName: 'X-CSRF-Token',
   headers: {
-    'Accept': 'application/json'
+    'Accept': 'application/json',
   },
   validateStatus(status) {
     if (status === NOT_ACCEPTABLE) {

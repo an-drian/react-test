@@ -7,6 +7,7 @@ const Header = styled.header`
   padding: 0 30px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   position: absolute;
   top: 0;
