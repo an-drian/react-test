@@ -1,21 +1,45 @@
+import Select from 'react-select';
+import { makeAsOptions } from 'base/utils';
+import { useState } from 'react';
+import { Main } from 'base/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserEdit } from 'store/slices/user';
+import { fetchAllLeads } from 'store/slices/leads';
+import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import { Loader } from 'base/styled';
-import { isStatusSucceed } from 'base/utils';
 
-export default function Home () {
+export default function Home() {
+  const { t } = useTranslation('home');
+  const { page } = useSelector(state => state.leadsReducer);
+  const gaViewId = useSelector(state => state.gaViewIdReducer.selectedId?.value);
+
   const dispatch = useDispatch();
-  const { status, user } = useSelector((state) => state.userReducer);
+  const { queues } = useSelector(state => state.dashboardQueuesReducer);
+  const options = makeAsOptions(queues, 'id', 'name');
 
-  useEffect(() => {
-    if (user) return;
-    dispatch(fetchUserEdit());
-  }, [dispatch, user]);
+  useEffect (() => {
+    if (gaViewId) {
+      dispatch(fetchAllLeads({
+        page,
+        gaViewId
+      }));
+    }
+  },[dispatch, gaViewId, page]);
 
-  return !isStatusSucceed(status) ? <Loader /> : (
-    <div>
-      <h1>{`${user?.first_name} ${user?.last_name}`}</h1>
-    </div>
+  const [ queue, setQueue ] = useState(null);
+
+  async function handleSelectChange(payload) {
+    await setQueue(payload);
+  }
+
+  return (
+    <Main>
+      <h2>Home</h2>
+      <Select
+        options={options}
+        placeholder={t('selectQueuePlaceholder')}
+        onChange={handleSelectChange}
+        value={queue}
+      />
+    </Main>
   );
 }

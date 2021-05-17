@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getGAViewIds } from 'base/network/gaViews';
 import { LOADING, SUCCEED, FAILURE } from 'store/CONSTANTS';
-import { userSlice } from 'store/slices/user';
 
 export const initialState = {
   status: LOADING,

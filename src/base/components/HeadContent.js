@@ -16,7 +16,6 @@ export default function HeadContent() {
   const dispatch = useDispatch();
   function handleSelectChange (payload) {
     dispatch(setSelectedId(payload));
-    dispatch(fetchDashboardQueues(payload.value));
   }
 
   const { selectedId, ids, status } = useSelector((state) => state.gaViewIdReducer);
@@ -24,6 +23,14 @@ export default function HeadContent() {
   useEffect(() => {
     dispatch(fetchGAViewIds());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (ids.length) dispatch(setSelectedId({ value: ids[0].id, label: ids[0].pretty_name }));
+  }, [dispatch, ids]);
+
+  useEffect(() => {
+    if (selectedId) dispatch(fetchDashboardQueues(selectedId.value));
+  }, [dispatch, selectedId]);
 
   const options = makeAsOptions(ids, 'id', 'pretty_name');
 

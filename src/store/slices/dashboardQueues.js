@@ -16,7 +16,7 @@ export const fetchDashboardQueues = createAsyncThunk(
 });
 
 export const dashboardQueuesSlice = createSlice({
-  name: 'gaViewIdsSlice',
+  name: 'dashboardQueuesSlice',
   initialState,
   reducers: {
   },
@@ -25,7 +25,6 @@ export const dashboardQueuesSlice = createSlice({
       state.status = LOADING;
     },
     [fetchDashboardQueues.fulfilled]: (state, action) => {
-      console.log(action.payload?.dashboard_queues);
       state.queues = action.payload?.dashboard_queues;
       state.status = SUCCEED;
     },
