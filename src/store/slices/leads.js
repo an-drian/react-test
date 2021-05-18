@@ -6,6 +6,7 @@ export const initialState = {
   status: LOADING,
   page: 1,
   leads: [],
+  lead: null,
   errors: {}
 };
 
@@ -33,8 +34,7 @@ export const leadsSlice = createSlice({
       state.status = LOADING;
     },
     [fetchLeadById.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      // state.queues = action.payload?.dashboard_queues;
+      state.queues = action.payload?.lead;
       state.status = SUCCEED;
     },
     [fetchLeadById.rejected]: (state) => {
@@ -45,8 +45,7 @@ export const leadsSlice = createSlice({
       state.status = LOADING;
     },
     [fetchAllLeads.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      // state.queues = action.payload?.dashboard_queues;
+      state.queues = action.payload?.leads;
       state.status = SUCCEED;
     },
     [fetchAllLeads.rejected]: (state) => {
